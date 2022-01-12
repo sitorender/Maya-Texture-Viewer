@@ -1,0 +1,4 @@
+string $seleTEX[] = `ls -selection -showType`;
+if ($seleTEX[1] == "file" || $seleTEX[1] == "grid" || $seleTEX[1] == "noise" || $seleTEX[1] == "checker" || $seleTEX[1] == "fractal" || $seleTEX[1] == "bulge" || $seleTEX[1] == "cloth" || $seleTEX[1] == "mandelbrot" || $seleTEX[1] == "mountain" || $seleTEX[1] == "ocean" || $seleTEX[1] == "psdFileTex" || $seleTEX[1] == "ramp" || $seleTEX[1] == "simplexNoise" || $seleTEX[1] == "water"){
+connectAttr -f ($seleTEX[0] + ".outColor") lambertTEST_TEX.color;
+}
