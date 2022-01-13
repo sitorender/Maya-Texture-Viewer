@@ -1,7 +1,4 @@
-
-if (`objExists cameraTEX`){
-    } else {
-//creo camera
+//creo nuova camera e la uso
 string $cameraName[] = `camera`;
 string $cameraShape = $cameraName[1];
 rotate -r -eu -fo -90.00000 0 0 ;
@@ -10,15 +7,11 @@ move -r 0 20 0 ;
 rename $cameraName[0] "cameraTEX";
 setAttr "cameraTEX.orthographic" 1;
 setAttr "cameraTEXShape.orthographicWidth" 2.3;
-}
-
 
 //creo vista
-if (`window -ex texviewID`){
-    } else {
-string $window = `window -t "TexView" -wh 500 500 texviewID` ;
+string $window = `window -t "TexView" -wh 500 500 finestradestocazzo` ;
 paneLayout;
-modelPanel -cam "cameraTEX";
+modelPanel -cam "cameraTEX" ;
 showWindow $window;
 
 //setto ombreggiata e con textures
@@ -26,23 +19,15 @@ string $mypanels[] = `getPanel -all`;
 int $sizePanels = size($mypanels);
 string $newpanel = $mypanels[$sizePanels-1];
 modelEditor  -edit -da "smoothShaded" -displayTextures on -grid off $newpanel;
-    }
 
-if (`objExists lambertTEST_TEX`){
-    } else {
+
 //creo nuovo materiale
 shadingNode -asShader "lambert" -n "lambertTEST_TEX";
-    }
-
-if (`objExists pPlaneTEST_TEX`){
-select -r pPlaneTEST_TEX;
-        } else {
 //creo piano
-polyPlane -n pPlaneTEST_TEX -w 2 -h 2;  
-}   
-
+polyPlane -n pPlaneTEST_TEX -w 2 -h 2;
 //assegno materiale
 hyperShade -assign lambertTEST_TEX;
+
 
 //isolo il piano
 isolateSelect -state 1 $newpanel;
